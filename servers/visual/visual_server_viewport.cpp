@@ -292,7 +292,7 @@ void VisualServerViewport::draw_viewports() {
 			// In ARVR mode it is our interface that controls our size
 			if (arvr_interface.is_valid()) {
 				// override our size, make sure it matches our required size
-				vp->size = arvr_interface->get_render_targetsize();
+				//vp->size = arvr_interface->get_render_targetsize();
 			} else {
 				// reset this, we can't render the output without a valid interface (this will likely be so when we're in the editor)
 				vp->size = Vector2(0, 0);
