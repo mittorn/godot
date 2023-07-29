@@ -363,6 +363,7 @@ bool PList::load_file(const String &p_filename) {
 		ret.parse_utf8((const char *)array.ptr(), array.size());
 		return load_string(ret);
 	}
+	return false;
 }
 
 bool PList::load_string(const String &p_string) {
