@@ -322,6 +322,7 @@ uint32_t FileAccessUnix::_get_unix_permissions(const String &p_file) {
 	} else {
 		ERR_FAIL_V_MSG(0, "Failed to get unix permissions for: " + p_file + ".");
 	};
+	return 0;
 }
 
 Error FileAccessUnix::_set_unix_permissions(const String &p_file, uint32_t p_permissions) {

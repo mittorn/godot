@@ -94,6 +94,7 @@ Variant PackedDataContainer::_iter_get_ofs(const Variant &p_iter, uint32_t p_off
 	} else {
 		ERR_FAIL_V(Variant());
 	}
+	return Variant();
 }
 
 Variant PackedDataContainer::_get_at_ofs(uint32_t p_ofs, const uint8_t *p_buf, bool &err) const {

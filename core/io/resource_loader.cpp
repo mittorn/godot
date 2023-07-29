@@ -276,6 +276,7 @@ RES ResourceLoader::_load(const String &p_path, const String &p_original_path, c
 #endif
 
 	ERR_FAIL_V_MSG(RES(), "No loader found for resource: " + p_path + ".");
+	return 0;
 }
 
 bool ResourceLoader::_add_to_loading_map(const String &p_path) {
@@ -508,6 +509,7 @@ Ref<ResourceInteractiveLoader> ResourceLoader::load_interactive(const String &p_
 	ERR_FAIL_COND_V_MSG(found, Ref<ResourceInteractiveLoader>(), "Failed loading resource: " + path + ".");
 
 	ERR_FAIL_V_MSG(Ref<ResourceInteractiveLoader>(), "No loader found for resource: " + path + ".");
+	return {};
 }
 
 void ResourceLoader::add_resource_format_loader(Ref<ResourceFormatLoader> p_format_loader, bool p_at_front) {

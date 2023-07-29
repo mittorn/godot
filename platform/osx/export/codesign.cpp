@@ -1616,6 +1616,7 @@ Error CodeSign::codesign(bool p_use_hardened_runtime, bool p_force, const String
 		r_error_msg = TTR("Unknown object type.");
 		ERR_FAIL_V_MSG(FAILED, "CodeSign: Unknown object type.");
 	}
+ return _codesign_file(p_use_hardened_runtime, p_force, "", p_path, "", p_ent_path, false, r_error_msg);;
 }
 
 #endif // MODULE_REGEX_ENABLED

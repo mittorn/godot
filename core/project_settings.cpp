@@ -910,6 +910,7 @@ Error ProjectSettings::save_custom(const String &p_path, const CustomMap &p_cust
 	} else {
 		ERR_FAIL_V_MSG(ERR_FILE_UNRECOGNIZED, "Unknown config file format: " + p_path + ".");
 	}
+	return {};
 }
 
 Variant _GLOBAL_DEF_ALIAS(const String &p_var, const String &p_old_name, const Variant &p_default, bool p_restart_if_changed) {
