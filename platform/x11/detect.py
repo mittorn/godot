@@ -214,7 +214,7 @@ def configure(env):
     version = get_compiler_version(env) or [-1, -1]
     if using_gcc(env):
         if version[0] >= 6:
-            env.Append(CCFLAGS=["-fpie"])
+            env.Append(CCFLAGS=["-no-pie"])
             env.Append(LINKFLAGS=["-no-pie"])
     # Do the same for clang should be fine with Clang 4 and higher
     if using_clang(env):
