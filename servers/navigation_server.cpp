@@ -103,6 +103,7 @@ void NavigationServerManager::set_default_server(NavigationServerCallback p_call
 }
 
 NavigationServer *NavigationServerManager::new_default_server() {
-	ERR_FAIL_COND_V(create_callback == nullptr, nullptr);
-	return create_callback();
+//	ERR_FAIL_COND_V(create_callback == nullptr, nullptr);
+//	return create_callback();
+	return nullptr;
 }

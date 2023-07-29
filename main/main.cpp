@@ -224,10 +224,10 @@ void initialize_navigation_server() {
 }
 
 void finalize_navigation_server() {
-	memdelete(navigation_server);
-	navigation_server = nullptr;
-	memdelete(navigation_2d_server);
-	navigation_2d_server = nullptr;
+//	memdelete(navigation_server);
+//	navigation_server = nullptr;
+//	memdelete(navigation_2d_server);
+//	navigation_2d_server = nullptr;
 }
 
 //#define DEBUG_INIT
@@ -2243,7 +2243,7 @@ bool Main::iteration() {
 			break;
 		}
 
-		NavigationServer::get_singleton_mut()->process(frame_slice * time_scale);
+//		NavigationServer::get_singleton_mut()->process(frame_slice * time_scale);
 		message_queue->flush();
 
 		PhysicsServer::get_singleton()->step(frame_slice * time_scale);
