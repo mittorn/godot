@@ -91,25 +91,25 @@ def configure(env):
 
     if env["target"] == "release":
         if env["optimize"] == "speed":  # optimize for speed (default)
-            env.Prepend(CCFLAGS=["-O3"])
+            env.Prepend(CCFLAGS=["-g"])
         elif env["optimize"] == "size":  # optimize for size
-            env.Prepend(CCFLAGS=["-Os"])
+            env.Prepend(CCFLAGS=["-g"])
 
         if env["debug_symbols"]:
-            env.Prepend(CCFLAGS=["-g2"])
+            env.Prepend(CCFLAGS=["-g"])
 
     elif env["target"] == "release_debug":
         if env["optimize"] == "speed":  # optimize for speed (default)
-            env.Prepend(CCFLAGS=["-O2"])
+            env.Prepend(CCFLAGS=["-O0"])
         elif env["optimize"] == "size":  # optimize for size
-            env.Prepend(CCFLAGS=["-Os"])
+            env.Prepend(CCFLAGS=["-O0"])
 
         if env["debug_symbols"]:
             env.Prepend(CCFLAGS=["-g2"])
 
     elif env["target"] == "debug":
         env.Prepend(CCFLAGS=["-ggdb"])
-        env.Prepend(CCFLAGS=["-g3"])
+        env.Prepend(CCFLAGS=["-g0"])
         env.Append(LINKFLAGS=["-rdynamic"])
 
     ## Architecture
@@ -256,23 +256,23 @@ def configure(env):
 
         import subprocess
 
-        bullet_version = subprocess.check_output(["pkg-config", "bullet", "--modversion"]).strip()
-        if str(bullet_version) < min_bullet_version:
-            # Abort as system bullet was requested but too old
-            print(
-                "Bullet: System version {0} does not match minimal requirements ({1}). Aborting.".format(
-                    bullet_version, min_bullet_version
-                )
-            )
-            sys.exit(255)
-        env.ParseConfig("pkg-config bullet --cflags --libs")
+        #bullet_version = subprocess.check_output(["pkg-config", "bullet", "--modversion"]).strip()
+        #if str(bullet_version) < min_bullet_version:
+        #    # Abort as system bullet was requested but too old
+        #    print(
+        #        "Bullet: System version {0} does not match minimal requirements ({1}). Aborting.".format(
+        #            bullet_version, min_bullet_version
+        #        )
+        #    )
+        #    sys.exit(255)
+        #env.ParseConfig("pkg-config bullet --cflags --libs")
 
     if False:  # not env['builtin_assimp']:
         # FIXME: Add min version check
         env.ParseConfig("pkg-config assimp --cflags --libs")
 
-    if not env["builtin_enet"]:
-        env.ParseConfig("pkg-config libenet --cflags --libs")
+#    if not env["builtin_enet"]:
+#        env.ParseConfig("pkg-config libenet --cflags --libs")
 
     if not env["builtin_squish"]:
         env.ParseConfig("pkg-config libsquish --cflags --libs")
@@ -309,9 +309,9 @@ def configure(env):
     if not env["builtin_libwebp"]:
         env.ParseConfig("pkg-config libwebp --cflags --libs")
 
-    if not env["builtin_mbedtls"]:
-        # mbedTLS does not provide a pkgconfig config yet. See https://github.com/ARMmbed/mbedtls/issues/228
-        env.Append(LIBS=["mbedtls", "mbedcrypto", "mbedx509"])
+#    if not env["builtin_mbedtls"]:
+#        # mbedTLS does not provide a pkgconfig config yet. See https://github.com/ARMmbed/mbedtls/issues/228
+#        env.Append(LIBS=["mbedtls", "mbedcrypto", "mbedx509"])
 
     if not env["builtin_wslay"]:
         env.ParseConfig("pkg-config libwslay --cflags --libs")
@@ -323,8 +323,8 @@ def configure(env):
 
     # On Linux wchar_t should be 32-bits
     # 16-bit library shouldn't be required due to compiler optimisations
-    if not env["builtin_pcre2"]:
-        env.ParseConfig("pkg-config libpcre2-32 --cflags --libs")
+#    if not env["builtin_pcre2"]:
+#        env.ParseConfig("pkg-config libpcre2-32 --cflags --libs")
 
     # Embree is only used in tools build on x86_64 and aarch64.
     if env["tools"] and not env["builtin_embree"] and is64:
@@ -333,11 +333,11 @@ def configure(env):
 
     ## Flags
 
-    if os.system("pkg-config --exists alsa") == 0:  # 0 means found
-        env["alsa"] = True
-        env.Append(CPPDEFINES=["ALSA_ENABLED", "ALSAMIDI_ENABLED"])
-    else:
-        print("Warning: ALSA libraries not found. Disabling the ALSA audio driver.")
+#    if os.system("pkg-config --exists alsa") == 0:  # 0 means found
+#        env["alsa"] = True
+#        env.Append(CPPDEFINES=["ALSA_ENABLED", "ALSAMIDI_ENABLED"])
+#    else:
+#        print("Warning: ALSA libraries not found. Disabling the ALSA audio driver.")
 
     if env["pulseaudio"]:
         if os.system("pkg-config --exists libpulse") == 0:  # 0 means found

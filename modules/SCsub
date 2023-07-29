@@ -7,7 +7,7 @@ import os
 import modules_builders
 
 env_modules = env.Clone()
-
+print(dict(env_modules))
 Export("env_modules")
 
 env.Depends("modules_enabled.gen.h", Value(env.module_list))
