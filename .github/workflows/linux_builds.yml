@@ -39,6 +39,8 @@ jobs:
           # The actual dependencies
           sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
               libxinerama-dev libgl1-mesa-dev libglu-dev libxi-dev libxrandr-dev
+          sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+          sudo apt install -y g++-11
 
       - name: Setup Godot build cache
         uses: ./.github/actions/godot-cache
